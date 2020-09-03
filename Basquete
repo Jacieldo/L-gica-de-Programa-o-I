@@ -1,0 +1,65 @@
+package lp1.aula01;
+
+import java.util.Scanner;
+
+public class Basquete {
+
+	private static Scanner teclado;
+
+	public static void main(String[] args) {
+		System.out.print("Nome do Jogador: ");
+		teclado = new Scanner(System.in);
+		String name = teclado.nextLine();
+		
+		int i, ponto1, ponto2, total=0, spare = 0, strike = 0;
+		for(i=0; i<3; i++) {
+			ponto1 = 0; ponto2 = 0; 
+			System.out.format("%dº RODADA ", i+1);
+			System.out.println("");
+			System.out.print("   Jogada 1 --> " );
+			ponto1 = teclado.nextInt();
+						
+			if (ponto1 == 10) {
+				strike += 2;	
+				
+				//SE NÃO FOR STRIKE
+			} else {
+				System.out.print("   Jogada 2 --> ");
+				ponto2 = teclado.nextInt();	
+				
+				if ((ponto1 + ponto2) == 10) {
+					spare = 1;
+				}
+				//SPARE				
+				
+				if (spare == 1) {
+					ponto2 = ponto2 * 2;
+					spare = 0;
+				}					
+			}
+			//Para STRIKE
+			if (i > 0) {
+				if (strike > 0); 
+					ponto1 = ponto1 * 2;
+					ponto2 = ponto2 * 2;
+					strike --;
+				if (strike > 2) {
+					strike = 2;
+				}
+			}
+			
+			//Se SPARE na jogada anterios
+			if (spare == 1) {
+				if (ponto1 == 10) {
+					ponto1 = ponto1 * 2;
+					ponto2 = ponto2 * 2;
+					spare = 0;					
+				} else{
+					ponto1 = ponto1 * 2;
+					ponto2 = ponto2 * 2;
+				}
+			}
+			total += (ponto1 + ponto2);					
+		}
+		System.out.format("%d Pontos", total);
+	}
