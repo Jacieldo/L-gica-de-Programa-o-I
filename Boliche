@@ -1,0 +1,63 @@
+package lp1.aula01;
+
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+public class Basquete {
+
+	private static Scanner teclado;
+
+	public static void main(String[] args) {
+		System.out.print("Nome do Jogador: ");
+		teclado = new Scanner(System.in);
+		String name = teclado.nextLine();
+		
+		int[] jogadas = new int [20];
+	
+		for (int i = 1; i < 11; i++) {
+			System.out.format("%dº RODADA ", (2 * i - i));
+			System.out.println(" ");
+			System.out.print("--> 1º Jogada: ");
+			jogadas[2 * i - 2] = teclado.nextInt();
+			
+			if (jogadas[(2 * i - 2)] < 10 ) {
+				System.out.print("--> 2º Jogada: ");
+				jogadas[2 * i - 1] = teclado.nextInt();
+			} else {				
+				jogadas[2 * i - 1] = 0;
+			}			
+		}
+		
+		
+		
+		
+		int totalPontos = 0;
+		for (int i = 0; i < 15; i++ ) { //Testando até a 16 das 20
+			if (jogadas[i] == 10) {
+				if (jogadas[i + 2] == 10) {
+					totalPontos += (jogadas[i] + jogadas[i + 2] + jogadas[i + 4]);					
+				} else {
+					totalPontos += (jogadas[i] + jogadas[i + 2] + jogadas[i + 3]);
+				}
+			}
+			if (jogadas[i * 2] < 10) {
+				if (jogadas[i * 2] + jogadas[i + 1] == 10) {
+					totalPontos += jogadas[i] + jogadas[i + 1] + jogadas[i + 2];
+				}
+			} else {
+				
+			}
+			
+		}
+		
+		
+		
+		
+		//Mostando a Matiz
+		for (int cont = 0; cont < 20; cont++) {			
+				System.out.print(jogadas[cont] + " ");				
+		}
+		System.out.println(totalPontos);
+	}
+}
